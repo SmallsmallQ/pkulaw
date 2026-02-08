@@ -1,0 +1,19 @@
+{
+  "mcpServers": {
+    "pkulaw": {
+      "type": "http",
+      "url": "https://mcp.pkulaw.com/v1/mcp",
+      "description": "北大法宝官方 MCP 服务，提供法律法规数据库、案例数据库及司法解释的检索能力。"
+    },
+    "wechat-work": {
+      "type": "http",
+      "url": "https://mcp.work.weixin.qq.com/mcp",
+      "description": "企业微信集成，用于法务通知和团队协作。"
+    },
+    "feishu": {
+      "type": "http",
+      "url": "https://mcp.feishu.cn/mcp",
+      "description": "飞书（Lark）集成，用于文档协作和任务管理。"
+    }
+  }
+}

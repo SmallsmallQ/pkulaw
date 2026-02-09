@@ -1,8 +1,8 @@
 {
-  "name": "pkulaw-plugins",
-  "version": "1.0.0",
-  "description": "专为中国法律专业人士设计的 AI 助手插件。集成北大法宝（PKULaw）数据，提供法律法规检索、合同审查、文书起草等功能。",
-  "author": {
-    "name": "PKU Law Team"
-  }
+    "name": "pkulaw",
+    "version": "1.0.0",
+    "description": "专为中国法律专业人士设计的 AI 助手插件。集成北大法宝（PKULaw）数据，提供法律法规检索、合同审查、合规检查等功能。",
+    "author": {
+        "name": "PKU Law Team"
+    }
 }

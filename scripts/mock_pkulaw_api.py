@@ -1,12 +1,13 @@
 #!/usr/bin/env python3
 import json
 import time
+import argparse
 
 def search_law(query, limit=5):
     """
     Mock function to search for laws and regulations.
     """
-    print(f"[API] Searching Laws for: '{query}'...")
+    # print(f"[API] Searching Laws for: '{query}'...")
     time.sleep(0.5) # Simulate network latency
     
     # Mock Response
@@ -22,6 +23,24 @@ def search_law(query, limit=5):
             "effective_date": "2023-12-05",
             "status": "Effective",
             "snippet": "...为正确审理合同纠纷案件..."
+        },
+        {
+            "title": "中华人民共和国刑法",
+            "effective_date": "1979-07-01",
+            "status": "Effective",
+            "snippet": "...为了惩罚犯罪，保护人民..."
+        },
+        {
+            "title": "中华人民共和国著作权法",
+            "effective_date": "1991-06-01",
+            "status": "Effective",
+            "snippet": "...为保护文学、艺术和科学作品作者的著作权..."
+        },
+        {
+            "title": "中华人民共和国专利法",
+            "effective_date": "1985-04-01",
+            "status": "Effective",
+            "snippet": "...为了保护发明创造专利权..."
         }
     ]
     return results[:limit]
@@ -30,7 +49,7 @@ def search_case(query, limit=3):
     """
     Mock function to search for judicial cases.
     """
-    print(f"[API] Searching Cases for: '{query}'...")
+    # print(f"[API] Searching Cases for: '{query}'...")
     time.sleep(0.8)
     
     # Mock Response
@@ -46,18 +65,29 @@ def search_case(query, limit=3):
             "case_no": "(2020)最高法民终888号",
             "court": "最高人民法院",
             "summary": "裁判要旨：对赌协议中关于股权回购的约定，不因未履行减资程序而归于无效..."
+        },
+        {
+            "case_name": "张三诉李四房屋买卖合同纠纷案",
+            "case_no": "(2022)沪01民初5678号",
+            "court": "上海市浦东新区人民法院",
+            "summary": "法院认定，双方签订的房屋买卖合同合法有效，判决李四继续履行合同..."
         }
     ]
     return results[:limit]
 
 if __name__ == "__main__":
-    print("--- Simulating PKULaw API Search ---")
-    q = "竞业限制 AND 违约金"
-    
-    laws = search_law(q)
-    print(f"\nFound {len(laws)} Laws:")
-    print(json.dumps(laws, indent=2, ensure_ascii=False))
-    
-    cases = search_case(q)
-    print(f"\nFound {len(cases)} Cases:")
-    print(json.dumps(cases, indent=2, ensure_ascii=False))
+    parser = argparse.ArgumentParser(description="Mock PKULaw API for legal research.")
+    parser.add_argument("action", choices=["search_law", "search_case"], help="Action to perform: search_law or search_case")
+    parser.add_argument("--query", required=True, help="Search query string.")
+    parser.add_argument("--limit", type=int, default=5, help="Maximum number of results to return.")
+
+    args = parser.parse_args()
+
+    if args.action == "search_law":
+        results = search_law(args.query, args.limit)
+    elif args.action == "search_case":
+        results = search_case(args.query, args.limit)
+    else:
+        results = {"error": "Invalid action specified."}
+
+    print(json.dumps(results, indent=2, ensure_ascii=False))
